@@ -42,9 +42,16 @@ docker-build-centos7:
 docker-build-centos8:
 	$(DOCKER) run -v `pwd`:/go/src/github.com/jenningsloy318/redfish_exporter  -w /go/src/github.com/jenningsloy318/redfish_exporter docker.io/jenningsloy318/prom-builder:centos8  /bin/bash -c "yum update -y && make build"
 
+
+docker-build-ubuntu2004:
+	$(DOCKER) run -v `pwd`:/go/src/github.com/jenningsloy318/redfish_exporter  -w /go/src/github.com/jenningsloy318/redfish_exporter docker.io/jenningsloy318/prom-builder:centos8  /bin/bash -c "yum update -y && make build"
+
+ 
+
 docker-build:
-	make docker-build-centos7
-	make docker-build-centos8
+	make docker-build-ubuntu2004
+	# make docker-build-centos7
+	# make docker-build-centos8
 
 rpm: | build
 	@echo ">> building binaries"
